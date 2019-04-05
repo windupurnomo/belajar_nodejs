@@ -47,6 +47,19 @@ const param = {
       if (error) res.status(500).send(error);
       else res.status(200).send("sukses");
     });
+  },
+  searchPegawai: (req, res) => {
+    const keyword = "%" + req.query.keyword.toLowerCase() + "%";
+    console.log(keyword);
+    const q = `select * from pegawai where 
+    lower(nip) like $1 or 
+    lower(name) like $2 or 
+    lower(address) like $3`;
+    pool.query(q, [keyword, keyword, keyword], (error, result) => {
+      console.log(error);
+      if (error) res.status(500).send(error);
+      else res.status(200).json(result.rows);
+    });
   }
 };
 

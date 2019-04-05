@@ -16,6 +16,7 @@ app.get("/pegawai", db.getPegawai);
 app.post("/pegawai", db.createPegawai);
 app.delete("/pegawai/:nip", db.deletePegawai);
 app.put("/pegawai/:nip", db.updatePegawai);
+app.get("/pegawai/search", db.searchPegawai);
 
 app.listen(port, () => {
   console.log("web server jalan di PORT " + port);
